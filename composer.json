@@ -1,0 +1,24 @@
+{
+    "name": "askaoru/routable",
+    "description": "Easily create routable models in laravel 5 projects",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "askaoru",
+            "email": "askaoru04@gmail.com",
+            "homepage": "https://github.com/askaoru",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "laravel/framework": "~5.0|~5.1|~5.2|~5.3|~5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Askaoru\\Routable\\": "src"
+        }
+    }
+}
