@@ -1,7 +1,7 @@
 <?php
 
 return [
-    
+
     /*
     |--------------------------------------------------------------------------
     | Database name
@@ -11,6 +11,6 @@ return [
     | other database name than 'route'
     |
     */
-    'database' => 'routes'
+    'database' => 'routes',
 
 ];
