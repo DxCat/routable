@@ -17,75 +17,74 @@ trait Routable
     }
 
     /**
-     * Return the model full route url
+     * Return the model full route url.
      *
-     * @return String
+     * @return string
      */
     public function getRouteUrl()
     {
-    	return url($this->getRoute->url);
+        return url($this->getRoute->url);
     }
 
     /**
-     * Create a route for this model
-	 *
-     * @return Boolean
+     * Create a route for this model.
+     *
+     * @return bool
      */
     public function makeRoute($url, $controller, $controller_parameters = null)
     {
-    	if ($this->getRoute) {
-    		return false;
-    	}
+        if ($this->getRoute) {
+            return false;
+        }
 
-    	$route = Route::create([
-    		'url' => $url,
-    		'controller' => '\\' .$controller,
-    		'controller_parameters' => json_encode($controller_parameters),
-    		'model' => get_class($this),
-    		'model_id' => $this->id
-    	]);
+        $route = Route::create([
+            'url'                   => $url,
+            'controller'            => '\\'.$controller,
+            'controller_parameters' => json_encode($controller_parameters),
+            'model'                 => get_class($this),
+            'model_id'              => $this->id,
+        ]);
 
-    	if ( ! $route ) {
-    		return false;
-    	}
+        if (!$route) {
+            return false;
+        }
 
-    	return true;
+        return true;
     }
 
     /**
-     * Update the route for this model
-	 *
-     * @return Boolean
+     * Update the route for this model.
+     *
+     * @return bool
      */
     public function updateRoute($url, $controller, $controller_parameters = null)
     {
+        if (!$this->getRoute) {
+            return false;
+        }
 
-    	if ( ! $this->getRoute ) {
-    		return false;
-    	}
+        $route = $this->getRoute;
+        $route->url = $url;
+        $route->controller = $controller;
+        $route->controller_parameters = json_encode($controller_parameters);
+        $route->save();
 
-    	$route = $this->getRoute;
-    	$route->url = $url;
-    	$route->controller = $controller;
-    	$route->controller_parameters = json_encode($controller_parameters);
-    	$route->save();
-
-    	return true;
+        return true;
     }
 
     /**
-     * Delete a route for this model
+     * Delete a route for this model.
      *
-     * @return Boolean
+     * @return bool
      */
     public function deleteRoute()
     {
-    	if ( ! $this->getRoute ) {
-    		return false;
-    	}
+        if (!$this->getRoute) {
+            return false;
+        }
 
-    	$this->getRoute->delete();
-    	return true;
+        $this->getRoute->delete();
+
+        return true;
     }
-    
 }

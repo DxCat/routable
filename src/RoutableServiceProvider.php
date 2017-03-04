@@ -19,7 +19,7 @@ class RoutableServiceProvider extends ServiceProvider
             ], 'config');
 
             $this->publishes([
-                __DIR__.'/migrations/' => database_path('/migrations')
+                __DIR__.'/migrations/' => database_path('/migrations'),
             ], 'migrations');
         }
     }
