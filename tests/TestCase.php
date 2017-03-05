@@ -3,7 +3,6 @@
 namespace Askaoru\Routable\Tests;
 
 use AdamWathan\Faktory\Faktory;
-use Askaoru\Routable\Tests\Models\Post;
 use Illuminate\Database\Capsule\Manager as DB;
 use Orchestra\Testbench\TestCase as OrchestraTest;
 
@@ -25,9 +24,9 @@ class TestCase extends OrchestraTest
         $this->createPostsTable();
         $this->createRoutesTable();
 
-        $this->faktory  = new Faktory;
+        $this->faktory = new Faktory();
         $load_factories = function ($faktory) {
-            require __DIR__ . '/factories.php';
+            require __DIR__.'/factories.php';
         };
         $load_factories($this->faktory);
     }
@@ -35,7 +34,8 @@ class TestCase extends OrchestraTest
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
+     *
      * @return void
      */
     protected function getEnvironmentSetUp($app)
@@ -45,7 +45,7 @@ class TestCase extends OrchestraTest
         $app['config']->set('database.connections.routableTest', [
             'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => ''
+            'prefix'   => '',
         ]);
     }
 
@@ -54,7 +54,7 @@ class TestCase extends OrchestraTest
      */
     private function configureDatabase()
     {
-        $db = new DB;
+        $db = new DB();
         $db->addConnection(
             [
                 'driver'    => 'sqlite',

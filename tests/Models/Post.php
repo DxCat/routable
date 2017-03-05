@@ -2,17 +2,17 @@
 
 namespace Askaoru\Routable\Tests\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Askaoru\Routable\Traits\Routable;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
-{	
-	use Routable;
+{
+    use Routable;
 
-	/**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-	protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body'];
 }
