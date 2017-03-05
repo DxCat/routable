@@ -68,7 +68,7 @@ $model->makeRoute($url, $controller, $controller_parameter = []);
 
 # Example
 $post = Post::find(1); # Model item that was attached with the trait
-$post->makeRoute('123', 'App\Controllers\PostController@view', [$post->id]);
+$post->makeRoute('post-title', 'App\Http\Controllers\PostController@view', [$post->id]);
 
 # Will return true if created successfully, false if already exist
 
@@ -82,7 +82,7 @@ $model->updateRoute($url, $controller, $controller_parameter = []);
 
 # Example
 $post = Post::find(1); # Model item that was attached with the trait
-$post->updateRoute('123', 'App\Controllers\PostController@view', [$post->id]);
+$post->updateRoute('updated-post-title', 'App\Http\Controllers\PostController@view', [$post->id]);
 
 # Will return false if no route was found, return true if updated successfully
 
