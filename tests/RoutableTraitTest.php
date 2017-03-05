@@ -7,16 +7,15 @@ use Askaoru\Routable\Tests\Models\Post;
 
 class RoutableTraitTest extends TestCase
 {
+    /**
+     * @var Askaoru\Routable\Tests\Models\Post
+     */
+    protected $post;
 
-	/**
-	 * @var Askaoru\Routable\Tests\Models\Post
-	 */
-	protected $post;
-
-	/**
-	 * Set up the environtment for this test.
-	 */
-	public function setUp()
+    /**
+     * Set up the environtment for this test.
+     */
+    public function setUp()
     {
         parent::setUp();
 
@@ -29,9 +28,9 @@ class RoutableTraitTest extends TestCase
      */
     public function testMakeRoute()
     {
-    	$route = $this->post->makeRoute($this->post->title, 'Askaoru\Routable\Tests\Controllers\PostController@view', [$this->post->id]);
+        $route = $this->post->makeRoute($this->post->title, 'Askaoru\Routable\Tests\Controllers\PostController@view', [$this->post->id]);
 
-    	$this->assertTrue($route);
+        $this->assertTrue($route);
     }
 
     /**
@@ -40,12 +39,12 @@ class RoutableTraitTest extends TestCase
      */
     public function testFailedToMakeRoute()
     {
-    	$route = $this->faktory->build('route');
+        $route = $this->faktory->build('route');
         $this->post->getRoute()->save($route);
 
-    	$route = $this->post->makeRoute($this->post->title, 'Askaoru\Routable\Tests\Controllers\PostController@view', [$this->post->id]);
+        $route = $this->post->makeRoute($this->post->title, 'Askaoru\Routable\Tests\Controllers\PostController@view', [$this->post->id]);
 
-    	$this->assertFalse($route);
+        $this->assertFalse($route);
     }
 
     /**
@@ -53,11 +52,11 @@ class RoutableTraitTest extends TestCase
      * Condition : The route exist.
      */
     public function testReturnRoute()
-    {		
+    {
         $route = $this->faktory->build('route');
         $this->post->getRoute()->save($route);
 
-    	$this->assertNotNull($this->post->getRoute);
+        $this->assertNotNull($this->post->getRoute);
     }
 
     /**
@@ -65,11 +64,11 @@ class RoutableTraitTest extends TestCase
      * Condition : The route exist.
      */
     public function testReturnRouteUrl()
-    {		
+    {
         $route = $this->faktory->build('route');
         $this->post->getRoute()->save($route);
 
-    	$this->assertStringEndsWith('post-title', $this->post->getRouteUrl());
+        $this->assertStringEndsWith('post-title', $this->post->getRouteUrl());
     }
 
     /**
@@ -77,12 +76,12 @@ class RoutableTraitTest extends TestCase
      * Condition : The route exist.
      */
     public function testUpdateRoute()
-    {		
+    {
         $route = $this->faktory->build('route');
         $this->post->getRoute()->save($route);
         $updatedRoute = $this->post->updateRoute('new-url', 'Askaoru\Routable\Tests\Controllers\NewController@view', [$this->post->id]);
 
-    	$this->assertTrue($updatedRoute);
+        $this->assertTrue($updatedRoute);
     }
 
     /**
@@ -90,10 +89,10 @@ class RoutableTraitTest extends TestCase
      * Condition : The route exist.
      */
     public function testFailedToUpdateRoute()
-    {		
+    {
         $route = $this->post->updateRoute('new-url', 'Askaoru\Routable\Tests\Controllers\NewController@view', [$this->post->id]);
 
-    	$this->assertFalse($route);
+        $this->assertFalse($route);
     }
 
     /**
@@ -101,13 +100,13 @@ class RoutableTraitTest extends TestCase
      * Condition : The route exist.
      */
     public function testDeleteRoute()
-    {	
+    {
         $route = $this->faktory->build('route');
         $this->post->getRoute()->save($route);
 
         $delete = $this->post->deleteRoute();
 
-    	$this->assertTrue($delete);
+        $this->assertTrue($delete);
     }
 
     /**
@@ -115,9 +114,9 @@ class RoutableTraitTest extends TestCase
      * Condition : The route doesnt exist.
      */
     public function testFailedToDeleteRoute()
-    {	
+    {
         $delete = $this->post->deleteRoute();
 
-    	$this->assertFalse($delete);
+        $this->assertFalse($delete);
     }
 }

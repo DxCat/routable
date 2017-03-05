@@ -4,9 +4,9 @@ namespace Askaoru\Routable\Tests;
 
 use Askaoru\Routable\RoutableController;
 
-class RoutableControllerTest extends TestCase 
+class RoutableControllerTest extends TestCase
 {
-	/**
+    /**
      * @var Askaoru\Routable\Tests\Models\Post
      */
     protected $post;
@@ -27,18 +27,18 @@ class RoutableControllerTest extends TestCase
         $route = $this->faktory->build('route');
         $this->post->getRoute()->save($route);
 
-        $this->routable = new RoutableController;
+        $this->routable = new RoutableController();
     }
 
-	/**
+    /**
      * Target : Make sure that the makeRoute() returns true.
      * Condition : The route exist.
      */
     public function testRouteExist()
     {
-    	$exist = $this->routable->exist('post-title');
+        $exist = $this->routable->exist('post-title');
 
-    	$this->assertTrue($exist);
+        $this->assertTrue($exist);
     }
 
     /**
@@ -47,9 +47,9 @@ class RoutableControllerTest extends TestCase
      */
     public function testRouteNotExist()
     {
-    	$exist = $this->routable->exist('post-title-none-existing');
+        $exist = $this->routable->exist('post-title-none-existing');
 
-    	$this->assertFalse($exist);
+        $this->assertFalse($exist);
     }
 
     /**
@@ -58,7 +58,7 @@ class RoutableControllerTest extends TestCase
      */
     public function testExecuteController()
     {
-    	$this->assertTrue($this->routable->go('post-title'));
+        $this->assertTrue($this->routable->go('post-title'));
     }
 
     /**
@@ -67,6 +67,6 @@ class RoutableControllerTest extends TestCase
      */
     public function testFailedToExecuteController()
     {
-    	$this->assertFalse($this->routable->go('post-title-none-existing'));
+        $this->assertFalse($this->routable->go('post-title-none-existing'));
     }
 }
