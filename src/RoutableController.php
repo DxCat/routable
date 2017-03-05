@@ -2,22 +2,22 @@
 
 namespace Askaoru\Routable;
 
-use App\Http\Controllers\Controller;
 use Askaoru\Routable\Models\Route;
+use Illuminate\Routing\Controller;
 
 class RoutableController extends Controller
 {
     /**
      * If the route exist, call the controller and attach the parameter.
      *
-     * @return mixed [Any controller attached, or 404 if not found]
+     * @return mixed
      */
     public function go($currentRoute)
     {
         $route = Route::where('url', $currentRoute)->first();
 
         if (!$route) {
-            abort(404);
+            return false;
         }
 
         $controller = explode('@', $route->controller);

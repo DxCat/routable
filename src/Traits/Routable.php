@@ -11,7 +11,7 @@ trait Routable
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
-    protected function getRoute()
+    public function getRoute()
     {
         return $this->hasOne('Askaoru\Routable\Models\Route', 'model_id')->where('model', get_class($this));
     }
