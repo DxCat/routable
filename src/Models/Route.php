@@ -134,7 +134,7 @@ class Route extends Eloquent
     public function getRoute()
     {
         return $this->where('model', get_class($this->caller))
-                    ->where('model_id', $this->caller->id);
+                    ->where('model_id', $this->caller->id)
                     ->first();
     }
 }
