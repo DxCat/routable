@@ -65,10 +65,10 @@ class Route extends Eloquent
     /**
      * Create a route for this model.
      *
-     * @param  string $url
-     * @param  string $controller
-     * @param  array  $controller_parameters
-     * 
+     * @param string $url
+     * @param string $controller
+     * @param array  $controller_parameters
+     *
      * @return self
      */
     public function make($url, $controller, $controller_parameters = [])
@@ -89,10 +89,10 @@ class Route extends Eloquent
     /**
      * Update the route for this model.
      *
-     * @param  string $url
-     * @param  string $controller
-     * @param  array  $controller_parameters
-     * 
+     * @param string $url
+     * @param string $controller
+     * @param array  $controller_parameters
+     *
      * @return self
      */
     public function change($url, $controller, $controller_parameters = [])
@@ -108,7 +108,6 @@ class Route extends Eloquent
 
         return false;
     }
-
 
     /**
      * Delete a route for this model.
