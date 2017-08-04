@@ -26,6 +26,13 @@
             "Askaoru\\Routable\\": "src"
         }
     },
+    "extra":{
+        "laravel":{
+            "providers":[
+                "Askaoru\\Routable\\RoutableServiceProvider"
+            ]
+        }
+    },
     "autoload-dev": {
         "psr-4": {
             "Askaoru\\Routable\\Tests\\": "tests"
