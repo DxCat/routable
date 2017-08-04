@@ -30,5 +30,12 @@
         "psr-4": {
             "Askaoru\\Routable\\Tests\\": "tests"
         }
+    },
+    "extra":{
+        "laravel":{
+            "providers":[
+                "Askaoru\\Routable\\RoutableServiceProvider"
+            ]
+        }
     }
 }
