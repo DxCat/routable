@@ -20,6 +20,7 @@ class CreateRoutesTable extends Migration
             $table->string('controller_parameters')->nullable();
             $table->string('model');
             $table->integer('model_id');
+            $table->string('locale');
             $table->timestamps();
         });
     }
