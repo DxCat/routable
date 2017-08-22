@@ -7,6 +7,8 @@ If you have encountered this, this package will be perfect for you.
 
 Using this package, any of your model can have their own route easily!
 
+P/S : This package also have basic supports for multilingual route. I am planning to expand more this feature later.
+
 ## Installation 
 
 Add it to your composer to json simply by running   
@@ -61,52 +63,54 @@ class Post extends Model
 
 ### Create route  
 ````php
-$model->makeRoute($url, $controller, $controller_parameter = []);
+$model->route()->make($url, $controller, $controller_parameter = [], $locale = null);
 # $url = the url for this route, example 'post/awesome-first-post'
 # $controller = controller method which will be called when the url is hit
 # $controller_parameter = array of parameter that the controller need to accept, optional
+# $locale = locale which the route is for, optional, will use the current app locale when it is not set
 
 # Example
 $post = Post::find(1); # Model item that was attached with the trait
-$post->makeRoute('post-title', 'App\Http\Controllers\PostController@view', [$post->id]);
+$post->route()->make('post-title', 'App\Http\Controllers\PostController@view', [$post->id]);
 
-# Will return true if created successfully, false if already exist
+# Will return the route object if created successfully, false if the url already exist
 
-# Note : The controller need to be in full namespace, omit leading slash.
+# Note : The controller need to be in full namespace with the method name, omit leading slash.
 ````
 
 ### Update route  
 ````php
-$model->updateRoute($url, $controller, $controller_parameter = []);
+$model->route()->change($url, $controller, $controller_parameter = [], $locale = null);
 # Same parameters and requirements with the create method
 
 # Example
 $post = Post::find(1); # Model item that was attached with the trait
-$post->updateRoute('updated-post-title', 'App\Http\Controllers\PostController@view', [$post->id]);
+$post->route()->change('updated-post-title', 'App\Http\Controllers\PostController@view', [$post->id]);
 
-# Will return false if no route was found, return true if updated successfully
+# Will return false if no route was found, return the route object if updated successfully
 
-# Note : The controller need to be in full namespace, omit leading slash.
+# Note : The controller need to be in full namespace with the method name, omit leading slash.
 ````
 
 ### Delete route
 ````php
-deleteRoute();
-# No Parameter
+$model->route()->clear($locale = null);
+# $locale = locale which the route is for, optional, will use the current app locale when it is not set
+
 $post = Post::find(1); # Model item that was attached with the trait
-$post->deleteRoute(); # Will return false if model have no route, return true if deleted successfully
+$post->route()->clear(); # Will return false if model have no route, return true if deleted successfully
 ````
 
 ### Return route
 ````php
-getRoute; 
-getRouteUrl();
-# No parameter
+$model->route()->getUrl($locale = null);
+$model->route()->getRoute($locale = null);
+# $locale = locale which the route is for, optional, will use the current app locale when it is not set
 
 # Example
 $post = Post::find(1); # Model item that was attached with the trait
-$post->getRoute; # Will return the full route object
-$post->getRouteUrl(); # Will return the full url, http://project.dev/post/awesome-first-post
+$post->route()->getUrl(); # Will return the full url, http://project.dev/post/awesome-first-post
+$post->route()->getRoute(); # Will return the full route object
 ````
 
 ### Main Route
