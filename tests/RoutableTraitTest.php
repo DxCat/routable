@@ -23,100 +23,12 @@ class RoutableTraitTest extends TestCase
     }
 
     /**
-     * Target : Make sure that the makeRoute() returns true.
-     * Condition : $this->post does not already contains a route.
+     * Target : Make sure that the route() returns an instance of Askaoru\Translatable\Models\Route.
+     * Target 2 : The returned instance must have a caller property which is an instance of the original class.
      */
-    public function testMakeRoute()
+    public function testTraitConnection()
     {
-        $route = $this->post->makeRoute($this->post->title, 'Askaoru\Routable\Tests\Controllers\PostController@view', [$this->post->id]);
-
-        $this->assertTrue($route);
-    }
-
-    /**
-     * Target : Make sure that the makeRoute() returns false.
-     * Condition : $this->post already contains a route.
-     */
-    public function testFailedToMakeRoute()
-    {
-        $route = $this->faktory->build('route');
-        $this->post->getRoute()->save($route);
-
-        $route = $this->post->makeRoute($this->post->title, 'Askaoru\Routable\Tests\Controllers\PostController@view', [$this->post->id]);
-
-        $this->assertFalse($route);
-    }
-
-    /**
-     * Target : Make sure that the getRoute returns the Askaoru\Routable\Models\Route object.
-     * Condition : The route exist.
-     */
-    public function testReturnRoute()
-    {
-        $route = $this->faktory->build('route');
-        $this->post->getRoute()->save($route);
-
-        $this->assertNotNull($this->post->getRoute);
-    }
-
-    /**
-     * Target : Make sure that the getRouteUrl() returns url string.
-     * Condition : The route exist.
-     */
-    public function testReturnRouteUrl()
-    {
-        $route = $this->faktory->build('route');
-        $this->post->getRoute()->save($route);
-
-        $this->assertStringEndsWith('post-title', $this->post->getRouteUrl());
-    }
-
-    /**
-     * Target : Make sure that the getRoute returns the Askaoru\Routable\Models\Route object.
-     * Condition : The route exist.
-     */
-    public function testUpdateRoute()
-    {
-        $route = $this->faktory->build('route');
-        $this->post->getRoute()->save($route);
-        $updatedRoute = $this->post->updateRoute('new-url', 'Askaoru\Routable\Tests\Controllers\NewController@view', [$this->post->id]);
-
-        $this->assertTrue($updatedRoute);
-    }
-
-    /**
-     * Target : Make sure that the getRoute returns the Askaoru\Routable\Models\Route object.
-     * Condition : The route exist.
-     */
-    public function testFailedToUpdateRoute()
-    {
-        $route = $this->post->updateRoute('new-url', 'Askaoru\Routable\Tests\Controllers\NewController@view', [$this->post->id]);
-
-        $this->assertFalse($route);
-    }
-
-    /**
-     * Target : Make sure that the deleteRoute() returns true.
-     * Condition : The route exist.
-     */
-    public function testDeleteRoute()
-    {
-        $route = $this->faktory->build('route');
-        $this->post->getRoute()->save($route);
-
-        $delete = $this->post->deleteRoute();
-
-        $this->assertTrue($delete);
-    }
-
-    /**
-     * Target : Make sure that the deleteRoute() returns false.
-     * Condition : The route doesnt exist.
-     */
-    public function testFailedToDeleteRoute()
-    {
-        $delete = $this->post->deleteRoute();
-
-        $this->assertFalse($delete);
+        $this->assertInstanceOf('Askaoru\Routable\Models\Route', $this->post->route());
+        $this->assertInstanceOf('Askaoru\Routable\Tests\Models\Post', $this->post->route()->getCaller());
     }
 }

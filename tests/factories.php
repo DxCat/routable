@@ -12,4 +12,5 @@ $faktory->define(['route', 'Askaoru\Routable\Models\Route'], function ($f) {
     $f->controller_parameters = '[1]';
     $f->model = 'Askaoru\Routable\Tests\Models\Post';
     $f->model_id = 1;
+    $f->locale = 'en';
 });
