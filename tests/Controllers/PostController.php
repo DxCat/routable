@@ -7,7 +7,7 @@ use Illuminate\Routing\Controller;
 class PostController extends Controller
 {
     /**
-     * Return true if this controller executed and contains the parameter $id.
+     * Return true if this controller is executed and contains the parameter $id.
      *
      * @return bool
      */

@@ -14,17 +14,15 @@ class RoutableController extends Controller
      */
     public function go($currentRoute)
     {
-        $route = Route::where('url', $currentRoute)->first();
+        if ($route = Route::where('url', $currentRoute)->first()) {
+            $controller = explode('@', $route->controller);
+            $parameters = json_decode($route->controller_parameters);
+            $execute = app()->make($controller[0])->callAction($controller[1], $parameters);
 
-        if (!$route) {
-            return false;
+            return $execute;
         }
 
-        $controller = explode('@', $route->controller);
-        $parameters = json_decode($route->controller_parameters);
-        $execute = app()->make($controller[0])->callAction($controller[1], $parameters);
-
-        return $execute;
+        return false;
     }
 
     /**
@@ -34,12 +32,10 @@ class RoutableController extends Controller
      */
     public function exist($currentRoute)
     {
-        $route = Route::where('url', $currentRoute)->first();
-
-        if (!$route) {
-            return false;
+        if (Route::where('url', $currentRoute)->first()) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 }

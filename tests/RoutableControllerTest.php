@@ -12,6 +12,11 @@ class RoutableControllerTest extends TestCase
     protected $post;
 
     /**
+     * @var Askaoru\Routable\Models\Route
+     */
+    protected $route;
+
+    /**
      * @var Askaoru\Routable\RoutableController
      */
     protected $routable;
@@ -24,8 +29,7 @@ class RoutableControllerTest extends TestCase
         parent::setUp();
 
         $this->post = $this->faktory->create('post');
-        $route = $this->faktory->build('route');
-        $this->post->getRoute()->save($route);
+        $this->route = $this->faktory->create('route');
 
         $this->routable = new RoutableController();
     }
