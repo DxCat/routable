@@ -144,8 +144,9 @@ class Route extends Eloquent
 
     /**
      * Check whether the url already exist in the database.
-     * 
-     * @param  string $url
+     *
+     * @param string $url
+     *
      * @return bool
      */
     protected function checkUrlExist($url)

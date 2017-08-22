@@ -22,7 +22,7 @@ class RoutableController extends Controller
             return $execute;
         }
 
-        return false;        
+        return false;
     }
 
     /**
