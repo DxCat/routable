@@ -3,16 +3,17 @@
 namespace Askaoru\Routable\Http;
 
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Routing\Router;
 
 class RoutableKernel extends HttpKernel
 {
     /**
      * Start the kernel instance.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @param  \Illuminate\Routing\Router  $router
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param \Illuminate\Routing\Router                   $router
+     *
      * @return void
      */
     public function __construct(Application $app, Router $router)
@@ -30,7 +31,7 @@ class RoutableKernel extends HttpKernel
     {
         $config = [
             'enable_locale_append' => false,
-            'enabled_locales' => [],
+            'enabled_locales'      => [],
         ];
 
         if (file_exists($config_file = base_path('config/routable.php'))) {
@@ -53,8 +54,9 @@ class RoutableKernel extends HttpKernel
     /**
      * Filter the locale from the request uri and define it globally.
      *
-     * @param  string $locale
-     * @param  array $request_segments
+     * @param string $locale
+     * @param array  $request_segments
+     *
      * @return void
      */
     public function filterAndDefineLocale($locale, $request_segments)
