@@ -15,11 +15,11 @@ class RoutableServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/config/routable.php' => config_path('/routable.php'),
+                __DIR__.'/../config/routable.php' => config_path('/routable.php'),
             ], 'config');
 
             $this->publishes([
-                __DIR__.'/migrations/' => database_path('/migrations'),
+                __DIR__.'/../migrations/' => database_path('/migrations'),
             ], 'migrations');
         }
     }
