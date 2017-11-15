@@ -64,4 +64,3 @@ return [
     */
     'enabled_locales' => ['en', 'fr'],
 ];
-
