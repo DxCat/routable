@@ -24,7 +24,7 @@ return [
     | back to the application and thing would just work!
     |
     */
-    'enable_locale_append' => true,
+    'enable_locale_append' => false,
 
     /*
     |--------------------------------------------------------------------------
