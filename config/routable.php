@@ -28,6 +28,31 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Multilingual Setup : Define the default locale
+    |--------------------------------------------------------------------------
+    |
+    | This is where you would define your default locale.
+    | By default, all laravel app will use 'en' as the
+    | default value but you can override that here.
+    |
+    */
+    'default_locale' => 'en',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Multilingual Setup : Hiding the default locale
+    |--------------------------------------------------------------------------
+    |
+    | When the routable middleware is used, all generated
+    | urls will have the locale appended to them. When
+    | this is set to true, the default locale will
+    | be kept hidden from the generated urls.
+    |
+    */
+    'hide_default_locale' => true,
+
+    /*
+    |--------------------------------------------------------------------------
     | Multilingual Setup : Enabled locales
     |--------------------------------------------------------------------------
     |
