@@ -1,3 +1,10 @@
+#### :zap:Package Archived and Abandoned :zap:
+This package is abandoned and no longer maintained. This package no longer have much value for the open source community
+and it is severely outdated. I'm sorry for any inconveniences caused.
+
+
+
+
 # Laravel 5 Routable
 Simple laravel 5 routable models package
 
